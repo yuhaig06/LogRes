@@ -21,6 +21,10 @@
     --card-shadow:
         0 25px 70px rgba(0, 0, 0, 0.35),
         inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+    /* LogRes Brand Colors */
+    --logres-blue: #0A4DA0;
+    --logres-cyan: #00B4D8;
 }
 
 
@@ -793,6 +797,47 @@ body.child #childBtn {
     }
 }
 
+
+/* =========================================================
+   23. LOGO STYLES
+   ========================================================= */
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Dashboard header logo */
+.dashboard-header .logo-container {
+    margin-bottom: 0;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-grow: 1;
+}
+
+.dashboard-header h1 {
+    flex-grow: 1;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    filter: drop-shadow(0 4px 12px rgba(10, 77, 160, 0.3));
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
 @keyframes smallBubble {
     from {
         transform: translateY(20px) scale(0.9);
@@ -846,6 +891,7 @@ body.child #childBtn {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 
     gap: 20px;
 }
@@ -1366,8 +1412,15 @@ body.elder .forgot-password-content #passwordHelpText {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 
     gap: 20px;
+}
+
+.admin-header .logo-container {
+    margin-bottom: 0;
+    margin-right: 20px;
+    flex-shrink: 0;
 }
 
 .admin-header h1 {

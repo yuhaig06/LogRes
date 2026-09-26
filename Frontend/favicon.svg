@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="favGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A4DA0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00B4D8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Simplified key with L and R for favicon -->
+  <g transform="translate(16, 16)">
+    <!-- Key head with R -->
+    <circle cx="0" cy="-6" r="5" fill="none" stroke="url(#favGradient)" stroke-width="2" />
+    <text x="0" y="-4" font-family="Arial, sans-serif" font-size="6" font-weight="bold" 
+          fill="url(#favGradient)" text-anchor="middle">R</text>
+    
+    <!-- Key shaft forming L -->
+    <line x1="0" y1="-1" x2="0" y2="8" stroke="url(#favGradient)" stroke-width="2" stroke-linecap="round" />
+    <line x1="0" y1="8" x2="-4" y2="8" stroke="url(#favGradient)" stroke-width="2" stroke-linecap="round" />
+    
+    <!-- Small key teeth -->
+    <line x1="0" y1="2" x2="3" y2="2" stroke="url(#favGradient)" stroke-width="1.5" stroke-linecap="round" />
+    <line x1="0" y1="5" x2="2" y2="5" stroke="url(#favGradient)" stroke-width="1.5" stroke-linecap="round" />
+  </g>
+</svg>

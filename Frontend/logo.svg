@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="logresGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A4DA0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00B4D8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Key body forming L and R -->
+  <g transform="translate(100, 100)">
+    <!-- Key head (top circle with R inside) -->
+    <circle cx="0" cy="-40" r="25" fill="none" stroke="url(#logresGradient)" stroke-width="8" />
+    
+    <!-- R letter inside key head -->
+    <text x="0" y="-32" font-family="Arial, sans-serif" font-size="28" font-weight="bold" 
+          fill="url(#logresGradient)" text-anchor="middle">R</text>
+    
+    <!-- Key shaft forming L -->
+    <line x1="0" y1="-15" x2="0" y2="30" stroke="url(#logresGradient)" stroke-width="8" stroke-linecap="round" />
+    <line x1="0" y1="30" x2="-20" y2="30" stroke="url(#logresGradient)" stroke-width="8" stroke-linecap="round" />
+    
+    <!-- Key teeth (subtle details) -->
+    <line x1="0" y1="10" x2="12" y2="10" stroke="url(#logresGradient)" stroke-width="6" stroke-linecap="round" />
+    <line x1="0" y1="20" x2="8" y2="20" stroke="url(#logresGradient)" stroke-width="6" stroke-linecap="round" />
+  </g>
+  
+  <!-- LogRes text below logo -->
+  <text x="100" y="160" font-family="Arial, sans-serif" font-size="24" font-weight="bold" 
+        fill="#0A4DA0" text-anchor="middle" letter-spacing="2">LogRes</text>
+</svg>
