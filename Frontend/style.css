@@ -1,0 +1,1583 @@
+/* =========================================================
+   1. DESIGN TOKENS
+   ========================================================= */
+
+:root {
+    --accent: #78c8ff;
+    --accent-soft: rgba(120, 200, 255, 0.18);
+
+    --glass-bg: rgba(20, 35, 65, 0.22);
+    --glass-border: rgba(255, 255, 255, 0.22);
+
+    --input-bg: rgba(255, 255, 255, 0.15);
+
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.65);
+
+    --card-radius: 24px;
+    --input-radius: 12px;
+    --button-radius: 12px;
+
+    --card-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+
+/* =========================================================
+   2. MODE THEMES
+   ========================================================= */
+
+body.child {
+    --accent: #38bdf8;
+    --accent-soft: rgba(56, 189, 248, 0.22);
+
+    --glass-bg: rgba(18, 45, 78, 0.26);
+
+    --card-radius: 30px;
+}
+
+body.elder {
+    --accent: #f8d66d;
+    --accent-soft: rgba(248, 214, 109, 0.20);
+
+    --glass-bg: rgba(32, 35, 42, 0.32);
+
+    --card-radius: 28px;
+}
+
+
+/* =========================================================
+   3. BASE
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+
+    background:
+        radial-gradient(
+            circle at 20% 30%,
+            rgba(37, 99, 235, 0.35),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(124, 58, 237, 0.28),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #020617,
+            #07152e 45%,
+            #020617
+        );
+
+    color: var(--text-primary);
+}
+
+
+/* =========================================================
+   4. MAIN LAYOUT
+   ========================================================= */
+
+main {
+    position: relative;
+
+    display: flex;
+    align-items: stretch;
+
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    overflow: hidden;
+
+    isolation: isolate;
+}
+
+.visual-panel {
+    flex: 1.15 1 0;
+    min-width: 0;
+}
+
+.login-panel,
+.auth-panel,
+.forgot-password-panel {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 0;
+
+    padding: 24px clamp(16px, 3vw, 40px);
+
+    z-index: 2;
+}
+
+.left,
+.right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+}
+
+
+/* =========================================================
+   5. AUTH CARD
+   ========================================================= */
+
+.auth-card {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: 420px;
+    max-height: calc(100dvh - 48px);
+
+    gap: 10px;
+
+    padding: 28px 28px 22px;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    border: 1px solid var(--glass-border);
+    border-radius: var(--card-radius);
+
+    background: var(--glass-bg);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow: var(--card-shadow);
+
+    color: var(--text-primary);
+}
+
+.auth-card .back-btn,
+.auth-card .resend-btn {
+    width: 100%;
+}
+
+.auth-card .auth-step {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+/* =========================================================
+   6. TYPOGRAPHY
+   ========================================================= */
+
+h1 {
+    margin: 0;
+
+    font-size: clamp(26px, 3vw, 32px);
+    font-weight: 700;
+
+    letter-spacing: -0.5px;
+}
+
+.mode-label {
+    width: fit-content;
+
+    margin: 0;
+    padding: 6px 10px;
+
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+
+    background: var(--accent-soft);
+
+    color: var(--accent);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    margin: 0 0 4px;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: 600;
+
+    letter-spacing: 0.2px;
+}
+
+
+/* =========================================================
+   7. INPUTS
+   ========================================================= */
+
+input {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: var(--input-radius);
+
+    background: var(--input-bg);
+
+    color: var(--text-primary);
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition:
+        background 0.25s,
+        border-color 0.25s,
+        box-shadow 0.25s;
+}
+
+input::placeholder {
+    color: var(--text-secondary);
+}
+
+input:focus {
+    border-color: var(--accent);
+
+    background: var(--accent-soft);
+
+    box-shadow:
+        0 0 0 3px var(--accent-soft);
+}
+
+
+/* =========================================================
+   8. MODE SWITCHER
+   ========================================================= */
+
+.order {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin: 2px 0 4px;
+}
+
+.order button {
+    flex: 1 1 0;
+    min-width: 0;
+
+    padding: 10px 8px;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   9. BUTTONS
+   ========================================================= */
+
+button {
+    padding: 12px 18px;
+
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: var(--button-radius);
+
+    background: rgba(255, 255, 255, 0.15);
+
+    color: var(--text-primary);
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s,
+        opacity 0.2s,
+        box-shadow 0.2s,
+        border-color 0.2s;
+}
+
+button:hover {
+    opacity: 0.88;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   10. LOGIN BUTTON
+   ========================================================= */
+
+.login-btn {
+    width: 100%;
+
+    margin-top: 8px;
+
+    border: none;
+
+    background: var(--accent);
+
+    color: #07111f;
+
+    font-size: 15px;
+}
+
+.login-btn:hover {
+    background: var(--accent);
+
+    color: #07111f;
+
+    box-shadow:
+        0 0 28px var(--accent-soft);
+}
+
+.login-btn:disabled {
+    opacity: 0.6;
+
+    cursor: wait;
+
+    transform: none;
+}
+
+
+/* =========================================================
+   11. ACTIVE MODE
+   ========================================================= */
+
+body.child #childBtn,
+body:not(.child):not(.elder) #adultBtn,
+body.elder #elderBtn {
+    background: var(--accent-soft);
+
+    border-color: var(--accent);
+
+    box-shadow:
+        0 0 20px var(--accent-soft);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   12. HELP / VALIDATION
+   ========================================================= */
+
+#helpText,
+#otpHelpText,
+#passwordHelpText {
+    min-height: 20px;
+
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+}
+
+#helpText.error,
+#otpHelpText.error,
+#passwordHelpText.error {
+    color: #ff7b88;
+}
+
+#helpText.success,
+#otpHelpText.success,
+#passwordHelpText.success {
+    color: #7dffb2;
+}
+
+
+/* =========================================================
+   13. CRYSTAL BUBBLE
+   ========================================================= */
+
+main::before {
+    content: "";
+
+    position: absolute;
+
+    width: 520px;
+    height: 520px;
+
+    top: 8%;
+    left: 8%;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(255, 255, 255, 0.42) 0%,
+            rgba(255, 255, 255, 0.12) 12%,
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 65% 70%,
+            rgba(0, 180, 255, 0.35),
+            transparent 65%
+        ),
+        rgba(70, 140, 220, 0.10);
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    box-shadow:
+        inset 20px 20px 60px rgba(255, 255, 255, 0.08),
+        inset -30px -30px 80px rgba(0, 80, 255, 0.18),
+        0 0 100px rgba(0, 140, 255, 0.18);
+
+    filter: blur(1px);
+
+    opacity: 0.7;
+
+    z-index: 1;
+
+    animation:
+        bubbleFloat 12s ease-in-out infinite alternate;
+}
+
+
+/* =========================================================
+   14. WATER FLOW
+   ========================================================= */
+
+main::after {
+    content: "";
+
+    position: absolute;
+
+    width: 900px;
+    height: 320px;
+
+    bottom: -80px;
+    left: -120px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(0, 140, 255, 0.18),
+            rgba(70, 90, 255, 0.15),
+            rgba(180, 80, 255, 0.12)
+        );
+
+    filter: blur(35px);
+
+    transform: rotate(-8deg);
+
+    opacity: 0.7;
+
+    z-index: 1;
+
+    animation:
+        waterFlow 14s ease-in-out infinite alternate;
+}
+
+
+/* =========================================================
+   15. STAR FIELD
+   ========================================================= */
+
+.stars {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 0;
+
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0.9) 1.5px,
+            transparent 1.5px
+        ),
+        radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0.6) 1px,
+            transparent 1px
+        ),
+        radial-gradient(
+            circle,
+            rgba(120, 180, 255, 0.7) 1.5px,
+            transparent 1.5px
+        );
+
+    background-size:
+        140px 140px,
+        90px 90px,
+        220px 220px;
+
+    background-position:
+        20px 30px,
+        40px 80px,
+        100px 120px;
+
+    opacity: 0.55;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   16. FLOATING GLASS BUBBLE
+   ========================================================= */
+
+.stars::before {
+    content: "";
+
+    position: absolute;
+
+    width: 120px;
+    height: 120px;
+
+    top: 18%;
+    right: 18%;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(255, 255, 255, 0.7),
+            rgba(255, 255, 255, 0.12) 18%,
+            rgba(40, 140, 255, 0.12) 55%,
+            transparent 72%
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.22);
+
+    box-shadow:
+        inset -10px -10px 25px rgba(30, 100, 255, 0.2),
+        0 0 30px rgba(80, 160, 255, 0.15);
+
+    animation:
+        smallBubble 8s ease-in-out infinite alternate;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   17. LIGHT CORE
+   ========================================================= */
+
+.stars::after {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    top: 42%;
+    left: 52%;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0.35) 0%,
+            rgba(120, 200, 255, 0.2) 25%,
+            transparent 70%
+        );
+
+    filter: blur(12px);
+
+    opacity: 0.7;
+
+    animation:
+        corePulse 5s ease-in-out infinite alternate;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   18. ELDER MODE
+   ========================================================= */
+
+body.elder .auth-card {
+    padding: 32px 28px 24px;
+}
+
+body.elder .auth-card input,
+body.elder .auth-card button {
+    min-height: 54px;
+    font-size: 16px;
+    border-width: 2px;
+}
+
+body.elder label {
+    font-size: 17px;
+}
+
+body.elder h1 {
+    font-size: 34px;
+}
+
+body.elder .subtitle,
+body.elder #helpText {
+    font-size: 15px;
+}
+
+body.elder main::before,
+body.elder main::after,
+body.elder .stars::before,
+body.elder .stars::after {
+    animation: none;
+}
+
+
+/* =========================================================
+   19. CHILD MODE
+   ========================================================= */
+
+body.child h1 {
+    font-size: 36px;
+}
+
+body.child .subtitle,
+body.child #helpText {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.parent-hint {
+    display: none;
+}
+
+body.child .parent-hint {
+    display: block;
+
+    margin: 0;
+    padding: 10px 14px;
+
+    border: 1px solid var(--accent);
+    border-radius: 16px;
+
+    background: var(--accent-soft);
+
+    color: #fff;
+
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+body.child .login-btn {
+    box-shadow:
+        0 0 28px var(--accent-soft);
+}
+
+body.child #childBtn {
+    transform: scale(1.05);
+}
+
+
+/* =========================================================
+   20. RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+    main {
+        flex-direction: column;
+        overflow: auto;
+    }
+
+    .visual-panel {
+        display: none;
+    }
+
+    .login-panel,
+    .auth-panel,
+    .forgot-password-panel {
+        flex: 1 1 auto;
+        min-height: 100vh;
+        min-height: 100dvh;
+        padding: 20px 16px;
+    }
+
+    .auth-card {
+        max-width: 440px;
+        max-height: none;
+    }
+}
+
+
+/* =========================================================
+   21. REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+
+/* =========================================================
+   22. ANIMATIONS
+   ========================================================= */
+
+@keyframes corePulse {
+    from {
+        transform: scale(0.8);
+        opacity: 0.45;
+    }
+
+    to {
+        transform: scale(1.25);
+        opacity: 0.8;
+    }
+}
+
+@keyframes bubbleFloat {
+    from {
+        transform: translate(-20px, -10px) scale(0.95);
+    }
+
+    to {
+        transform: translate(80px, 40px) scale(1.08);
+    }
+}
+
+@keyframes waterFlow {
+    from {
+        transform: translateX(-80px) rotate(-8deg);
+    }
+
+    to {
+        transform: translateX(120px) rotate(-3deg);
+    }
+}
+
+@keyframes smallBubble {
+    from {
+        transform: translateY(20px) scale(0.9);
+    }
+
+    to {
+        transform: translateY(-40px) scale(1.05);
+    }
+}
+
+
+/* =========================================================
+   23. DASHBOARD
+   ========================================================= */
+
+.dashboard-panel {
+    flex-basis: 100%;
+}
+
+.dashboard-content {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 80%;
+    max-width: 700px;
+
+    margin: 8% auto;
+
+    gap: 24px;
+
+    padding: 40px;
+
+    border: 1px solid var(--glass-border);
+    border-radius: var(--card-radius);
+
+    background: var(--glass-bg);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow: var(--card-shadow);
+
+    color: var(--text-primary);
+
+    z-index: 2;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+}
+
+.header-actions {
+    display: flex;
+
+    gap: 12px;
+}
+
+.admin-btn {
+    padding: 10px 20px;
+
+    border: 1px solid rgba(120, 200, 255, 0.4);
+    border-radius: var(--button-radius);
+
+    background: rgba(120, 200, 255, 0.15);
+
+    color: var(--accent);
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s,
+        opacity 0.2s,
+        box-shadow 0.2s,
+        border-color 0.2s;
+}
+
+.admin-btn:hover {
+    opacity: 0.88;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(120, 200, 255, 0.2);
+
+    border-color: var(--accent);
+}
+
+.admin-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.dashboard-header h1 {
+    font-size: 36px;
+}
+
+.logout-btn {
+    padding: 10px 20px;
+
+    border: 1px solid rgba(255, 100, 100, 0.4);
+    border-radius: var(--button-radius);
+
+    background: rgba(255, 100, 100, 0.15);
+
+    color: #ff7b88;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition:
+        transform 0.2s,
+        opacity 0.2s,
+        box-shadow 0.2s,
+        border-color 0.2s;
+}
+
+.logout-btn:hover {
+    opacity: 0.88;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(255, 100, 100, 0.2);
+
+    border-color: #ff7b88;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+
+    padding: 20px;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--input-radius);
+
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.info-item label {
+    font-size: 13px;
+    font-weight: 600;
+
+    color: var(--text-secondary);
+
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.info-item span {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.dashboard-body {
+    padding: 24px;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--input-radius);
+
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.dashboard-body p {
+    margin: 0;
+
+    font-size: 16px;
+    line-height: 1.6;
+
+    color: var(--text-secondary);
+}
+
+
+/* =========================================================
+   24. DASHBOARD - ELDER MODE
+   ========================================================= */
+
+body.elder .dashboard-content {
+    padding: 50px;
+
+    margin: 6% auto;
+}
+
+body.elder .dashboard-header h1 {
+    font-size: 40px;
+}
+
+body.elder .logout-btn {
+    min-height: 54px;
+
+    font-size: 16px;
+    border-width: 2px;
+}
+
+body.elder .info-item label {
+    font-size: 16px;
+}
+
+body.elder .info-item span,
+body.elder .dashboard-body p {
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   25. DASHBOARD - CHILD MODE
+   ========================================================= */
+
+body.child .dashboard-header h1 {
+    font-size: 38px;
+}
+
+body.child .dashboard-body p {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+
+/* =========================================================
+   26. FORGOT PASSWORD
+   ========================================================= */
+
+.forgot-password-content {
+    width: 100%;
+}
+
+.forgot-password-content h1 {
+    font-size: 32px;
+}
+
+.forgot-password-content .subtitle {
+    margin: -4px 0 14px;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+}
+
+.forgot-password-content label {
+    font-size: 14px;
+    font-weight: 600;
+
+    letter-spacing: 0.2px;
+}
+
+.forgot-password-content input {
+    width: 100%;
+
+    padding: 14px 16px;
+
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: var(--input-radius);
+
+    background: var(--input-bg);
+
+    color: var(--text-primary);
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition:
+        background 0.25s,
+        border-color 0.25s,
+        box-shadow 0.25s;
+}
+
+.forgot-password-content input::placeholder {
+    color: var(--text-secondary);
+}
+
+.forgot-password-content input:focus {
+    border-color: var(--accent);
+
+    background: var(--accent-soft);
+
+    box-shadow:
+        0 0 0 3px var(--accent-soft);
+}
+
+.forgot-password-content .order {
+    display: flex;
+    justify-content: center;
+
+    gap: 10px;
+
+    margin: 4px 0;
+}
+
+.forgot-password-content .order button {
+    width: 30%;
+
+    font-size: 13px;
+}
+
+.forgot-password-content button {
+    padding: 12px 18px;
+
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: var(--button-radius);
+
+    background: rgba(255, 255, 255, 0.15);
+
+    color: var(--text-primary);
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s,
+        opacity 0.2s,
+        box-shadow 0.2s,
+        border-color 0.2s;
+}
+
+.forgot-password-content button:hover {
+    opacity: 0.88;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.forgot-password-content button:active {
+    transform: translateY(0);
+}
+
+.forgot-password-content button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.forgot-password-content .login-btn {
+    width: 100%;
+
+    margin-top: 8px;
+
+    border: none;
+
+    background: var(--accent);
+
+    color: #07111f;
+
+    font-size: 15px;
+}
+
+.forgot-password-content .login-btn:hover {
+    background: var(--accent);
+
+    color: #07111f;
+
+    box-shadow:
+        0 0 28px var(--accent-soft);
+}
+
+.forgot-password-content .login-btn:disabled {
+    opacity: 0.6;
+
+    cursor: wait;
+
+    transform: none;
+}
+
+.forgot-password-content .back-btn {
+    width: 100%;
+
+    margin-top: 8px;
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.forgot-password-content .resend-btn {
+    width: 100%;
+
+    margin-top: 8px;
+
+    border: 1px solid rgba(120, 200, 255, 0.4);
+
+    background: rgba(120, 200, 255, 0.15);
+
+    color: var(--accent);
+}
+
+.forgot-password-content .resend-btn:hover {
+    border-color: var(--accent);
+
+    background: var(--accent-soft);
+}
+
+.forgot-password-content #helpText,
+.forgot-password-content #otpHelpText,
+.forgot-password-content #passwordHelpText {
+    min-height: 20px;
+
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+}
+
+.forgot-password-content #helpText.error,
+.forgot-password-content #otpHelpText.error,
+.forgot-password-content #passwordHelpText.error {
+    color: #ff7b88;
+}
+
+.forgot-password-content #helpText.success,
+.forgot-password-content #otpHelpText.success,
+.forgot-password-content #passwordHelpText.success {
+    color: #7dffb2;
+}
+
+.forgot-password-content .mode-label {
+    width: fit-content;
+
+    margin: 0;
+    padding: 6px 10px;
+
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+
+    background: var(--accent-soft);
+
+    color: var(--accent);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   27. FORGOT PASSWORD - ELDER MODE
+   ========================================================= */
+
+body.elder .forgot-password-content {
+    padding: 0;
+}
+
+body.elder .forgot-password-content h1 {
+    font-size: 34px;
+}
+
+body.elder .forgot-password-content input,
+body.elder .forgot-password-content button {
+    min-height: 54px;
+    font-size: 16px;
+    border-width: 2px;
+}
+
+body.elder .forgot-password-content label {
+    font-size: 17px;
+}
+
+body.elder .forgot-password-content .subtitle,
+body.elder .forgot-password-content #helpText,
+body.elder .forgot-password-content #otpHelpText,
+body.elder .forgot-password-content #passwordHelpText {
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   28. FORGOT PASSWORD BUTTON IN LOGIN
+   ========================================================= */
+
+.auth-links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    margin-top: 4px;
+}
+
+.forgot-password-btn {
+    width: auto;
+    flex: 1;
+
+    margin-top: 0;
+    padding: 8px 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s;
+}
+
+.forgot-password-btn:hover {
+    color: var(--accent);
+}
+
+.forgot-password-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   29. ADMIN PANEL
+   ========================================================= */
+
+.admin-panel {
+    flex-basis: 100%;
+}
+
+.admin-content {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 90%;
+    max-width: 1000px;
+
+    margin: 5% auto;
+
+    gap: 24px;
+
+    padding: 40px;
+
+    border: 1px solid var(--glass-border);
+    border-radius: var(--card-radius);
+
+    background: var(--glass-bg);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow: var(--card-shadow);
+
+    color: var(--text-primary);
+
+    z-index: 2;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+}
+
+.admin-header h1 {
+    font-size: 36px;
+}
+
+.admin-body {
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+.admin-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.refresh-btn,
+.back-btn {
+    padding: 10px 20px;
+
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: var(--button-radius);
+
+    background: rgba(255, 255, 255, 0.15);
+
+    color: var(--text-primary);
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s,
+        opacity 0.2s,
+        box-shadow 0.2s,
+        border-color 0.2s;
+}
+
+.refresh-btn:hover,
+.back-btn:hover {
+    opacity: 0.88;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.refresh-btn:focus-visible,
+.back-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.loading-message,
+.error-message {
+    padding: 16px;
+
+    border-radius: var(--input-radius);
+
+    font-size: 14px;
+    text-align: center;
+}
+
+.loading-message {
+    background: rgba(255, 255, 255, 0.1);
+
+    color: var(--text-secondary);
+}
+
+.error-message {
+    background: rgba(255, 123, 136, 0.15);
+
+    color: #ff7b88;
+}
+
+.users-table {
+    overflow-x: auto;
+}
+
+.users-table table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    border-radius: var(--input-radius);
+}
+
+.users-table thead {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.users-table th {
+    padding: 12px 16px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    text-align: left;
+
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+
+    color: var(--text-secondary);
+}
+
+.users-table td {
+    padding: 12px 16px;
+
+    font-size: 14px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.status-active {
+    color: #7dffb2;
+}
+
+.status-locked {
+    color: #ff7b88;
+}
+
+.admin-badge {
+    padding: 4px 8px;
+
+    border-radius: 4px;
+
+    background: rgba(120, 200, 255, 0.2);
+
+    color: var(--accent);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+.action-btn {
+    padding: 6px 12px;
+
+    margin-right: 6px;
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+
+    background: rgba(255, 255, 255, 0.1);
+
+    color: var(--text-primary);
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s,
+        border-color 0.2s;
+}
+
+.action-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.unlock-btn {
+    border-color: rgba(125, 255, 178, 0.4);
+
+    color: #7dffb2;
+}
+
+.unlock-btn:hover {
+    background: rgba(125, 255, 178, 0.15);
+}
+
+.reset-btn {
+    border-color: rgba(120, 200, 255, 0.4);
+
+    color: var(--accent);
+}
+
+.reset-btn:hover {
+    background: rgba(120, 200, 255, 0.15);
+}
+
+
+/* =========================================================
+   30. WELCOME PAGE
+   ========================================================= */
+
+.welcome-page {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100vh;
+
+    z-index: 2;
+}
+
+.welcome-page h1 {
+    font-size: 48px;
+    font-weight: 700;
+
+    color: var(--text-primary);
+
+    text-align: center;
+}

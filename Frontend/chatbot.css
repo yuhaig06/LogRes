@@ -1,0 +1,254 @@
+.chatbot {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 100;
+}
+
+.chat-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 58px;
+    height: 58px;
+    min-width: 58px;
+    min-height: 58px;
+
+    padding: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 50%;
+
+    background: var(--accent);
+    color: #07111f;
+
+    font-size: 24px;
+    line-height: 1;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.3),
+        0 0 24px var(--accent-soft);
+
+    transform: none;
+}
+
+.chat-toggle:hover,
+.chat-toggle:focus-visible {
+    transform: scale(1.06);
+    opacity: 1;
+}
+
+.chat-box {
+    position: absolute;
+    right: 0;
+    bottom: 76px;
+
+    width: min(340px, calc(100vw - 32px));
+
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 28px;
+
+    background: rgba(15, 30, 55, 0.62);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.35);
+
+    overflow: hidden;
+
+    opacity: 0;
+    transform: translateY(15px) scale(0.96);
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.25s,
+        transform 0.25s;
+}
+
+.chat-box.open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    padding: 14px 16px 14px 20px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.chat-header strong {
+    font-size: 16px;
+    letter-spacing: 0.02em;
+}
+
+.chat-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+
+    padding: 0;
+    margin: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    color: #fff;
+
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1;
+
+    box-shadow: none;
+    transform: none;
+}
+
+.chat-close:hover,
+.chat-close:focus-visible {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: var(--accent);
+    color: var(--accent);
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.chat-content {
+    min-height: 140px;
+    padding: 18px 20px;
+}
+
+.chat-content p {
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.55;
+}
+
+.chat-input-area {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 12px 14px 14px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.chat-input-area input {
+    margin: 0;
+    flex: 1;
+
+    min-height: 42px;
+    padding: 10px 16px;
+
+    border-radius: 999px;
+}
+
+.chat-input-area button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 42px;
+    padding: 10px 18px;
+
+    border: none;
+    border-radius: 999px;
+
+    background: var(--accent);
+    color: #07111f;
+
+    box-shadow: none;
+    transform: none;
+}
+
+.chat-input-area button:hover,
+.chat-input-area button:focus-visible {
+    opacity: 1;
+    transform: scale(1.03);
+    box-shadow: 0 0 18px var(--accent-soft);
+}
+
+
+/* Elder: larger tap targets, keep everything circular */
+
+body.elder .chat-toggle {
+    width: 72px;
+    height: 72px;
+    min-width: 72px;
+    min-height: 72px;
+
+    font-size: 30px;
+}
+
+body.elder .chat-box {
+    bottom: 92px;
+    width: min(400px, calc(100vw - 32px));
+    border-radius: 32px;
+}
+
+body.elder .chat-header {
+    padding: 16px 16px 16px 22px;
+}
+
+body.elder .chat-header strong {
+    font-size: 18px;
+}
+
+body.elder .chat-close {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+
+    border-width: 2px;
+    font-size: 26px;
+}
+
+body.elder .chat-content {
+    min-height: 160px;
+    padding: 20px 22px;
+}
+
+body.elder .chat-content p {
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+body.elder .chat-input-area {
+    gap: 10px;
+    padding: 14px 16px 16px;
+}
+
+body.elder .chat-input-area input {
+    min-height: 52px;
+    padding: 12px 18px;
+    font-size: 16px;
+    border-width: 2px;
+    border-radius: 999px;
+}
+
+body.elder .chat-input-area button {
+    min-height: 52px;
+    min-width: 72px;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 999px;
+}
